@@ -1,7 +1,9 @@
 import DPLogo from "@/components/DPLogo";
 
+/* ─── Icon components ─────────────────────────────────────── */
+
 const GitHubIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -12,7 +14,7 @@ const GitHubIcon = () => (
 );
 
 const LinkedInIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
     <rect x="2.75" y="2.75" width="26.5" height="26.5" rx="4.25" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" />
     <rect x="8" y="13" width="3.5" height="11" fill="rgba(255,255,255,0.8)" />
     <circle cx="9.75" cy="9.75" r="1.75" fill="rgba(255,255,255,0.8)" />
@@ -24,11 +26,13 @@ const LinkedInIcon = () => (
 );
 
 const EmailIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
     <rect x="4" y="8" width="24" height="16" rx="2" stroke="rgba(255,255,255,0.8)" strokeWidth="2" />
     <path d="M4 11l12 8 12-8" stroke="rgba(255,255,255,0.8)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
+
+/* ─── Page ────────────────────────────────────────────────── */
 
 export default function WorkPage() {
   return (
@@ -36,39 +40,44 @@ export default function WorkPage() {
       style={{
         position: "relative",
         width: "100%",
-        minHeight: "100vh",
+        minHeight: "100svh",
         background:
           "radial-gradient(100% 100% at 50% 0%, #1F1F1F 0%, #151515 45.67%, #080808 100%)",
         overflow: "hidden",
       }}
     >
-      {/* ── Navbar ── */}
+
+      {/* ── Navbar ────────────────────────────────────────── */}
+      {/*
+        Figma: left calc(50% - 1200.79px/2 + 29.02px), top: 46.05px
+        Nav spans 1200px, offset +29px from center → left ~186px at 1515px
+      */}
       <nav
         style={{
           position: "absolute",
-          top: "46px",
+          top: "clamp(20px, 3.04vw, 60px)",
           left: 0,
           right: 0,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          paddingLeft: "clamp(32px, calc((100% - 1200px) / 2 + 57px), 186px)",
-          paddingRight: "clamp(32px, calc((100% - 1200px) / 2 + 57px), 186px)",
+          padding: "0 clamp(20px, 12.28vw, 200px)",
         }}
       >
-        <DPLogo size={48} />
+        <DPLogo size="clamp(36px, 3.17vw, 56px)" />
+
         <div style={{ display: "flex", alignItems: "center", gap: "45px" }}>
           {[
-            { label: "Work", href: "/", active: true },
-            { label: "About", href: "/about", active: false },
-            { label: "Resume", href: "#", active: false },
+            { label: "Work",   href: "/",      active: true  },
+            { label: "About",  href: "/about", active: false },
+            { label: "Resume", href: "#",      active: false },
           ].map(({ label, href, active }) => (
             <a
               key={label}
               href={href}
               style={{
-                fontFamily: "Didot, var(--font-playfair), serif",
-                fontSize: "20px",
+                fontFamily: "var(--font-didot), Didot, serif",
+                fontSize: "clamp(14px, 1.32vw, 22px)",
                 lineHeight: "27px",
                 color: active ? "#ffffff" : "rgba(255,255,255,0.7)",
                 textDecoration: "none",
@@ -80,78 +89,108 @@ export default function WorkPage() {
         </div>
       </nav>
 
-      {/* ── Hero Text ── */}
-      <div
+      {/* ── Hero Text ─────────────────────────────────────── */}
+      {/*
+        Figma baseline (1515×983px):
+          DOMINIK:  left 156px (10.3vw), top 313px (31.84vh), font 128px (8.45vw), lh 185px
+          PAZUREK:  left 152px (10.0vw), top 421px (42.83vh), font 128px (8.45vw), lh 185px
+          subtitle: left 152px (10.0vw), top 313px (31.84vh), font 32px  (2.11vw)
+
+        Subtitle and DOMINIK share the same top.
+        DOMINIK line-height (1.445×) creates ~28px of leading above the cap,
+        so subtitle text sits just above DOMINIK's caps — no overlap.
+        PAZUREK overlaps slightly into DOMINIK's line-box → tight brutalist stack.
+      */}
+
+      {/* DOMINIK */}
+      <h1
         style={{
           position: "absolute",
-          top: "193px",
-          left: "clamp(16px, calc((100% - 1401px) / 2 - 32px), 25px)",
-          filter: "drop-shadow(0px 4px 4px rgba(0,0,0,0.25))",
+          left: "clamp(16px, 10.30vw, 200px)",
+          top: "clamp(80px, 31.84vh, 400px)",
+          fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
+          fontWeight: 400,
+          fontSize: "clamp(36px, 8.45vw, 160px)",
+          lineHeight: 1.445,
+          color: "#ffffff",
+          textShadow: "0px 8px 4px rgba(0,0,0,0.25)",
+          margin: 0,
+          whiteSpace: "nowrap",
+          zIndex: 1,
         }}
       >
-        <p
-          style={{
-            fontFamily: "Didot, var(--font-playfair), serif",
-            fontWeight: 400,
-            fontSize: "32px",
-            lineHeight: "43px",
-            color: "rgba(255,255,255,0.8)",
-            position: "relative",
-            zIndex: 1,
-            marginBottom: 0,
-          }}
-        >
-          Web designer &amp; developer
-        </p>
-        <h1
-          style={{
-            fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
-            fontWeight: 400,
-            fontSize: "clamp(60px, 15.84vw, 240px)",
-            lineHeight: 1.45,
-            color: "#ffffff",
-            textShadow: "0px 18px 10.9px rgba(0,0,0,0.5)",
-            marginTop: "clamp(-30px, -10.17vw, -154px)",
-            whiteSpace: "nowrap",
-          }}
-        >
-          DOMINIK
-        </h1>
-        <h2
-          style={{
-            fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
-            fontWeight: 400,
-            fontSize: "clamp(28px, 4.22vw, 64px)",
-            lineHeight: "177.59%",
-            color: "#ffffff",
-            textShadow: "0px 18px 10.9px rgba(0,0,0,0.25)",
-          }}
-        >
-          PAZUREK
-        </h2>
-      </div>
+        DOMINIK
+      </h1>
 
-      {/* ── Social Links ── */}
+      {/* PAZUREK */}
+      <h2
+        style={{
+          position: "absolute",
+          left: "clamp(16px, 10.03vw, 200px)",
+          top: "clamp(120px, 42.83vh, 520px)",
+          fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
+          fontWeight: 400,
+          fontSize: "clamp(36px, 8.45vw, 160px)",
+          lineHeight: 1.445,
+          color: "#ffffff",
+          textShadow: "0px 8px 4px rgba(0,0,0,0.25)",
+          margin: 0,
+          whiteSpace: "nowrap",
+          zIndex: 1,
+        }}
+      >
+        PAZUREK
+      </h2>
+
+      {/* "Web designer & developer" — same top as DOMINIK, sits above cap due to leading */}
+      <p
+        style={{
+          position: "absolute",
+          left: "clamp(16px, 10.03vw, 200px)",
+          top: "clamp(80px, 31.84vh, 400px)",
+          fontFamily: "var(--font-didot), Didot, serif",
+          fontWeight: 400,
+          fontSize: "clamp(12px, 2.11vw, 36px)",
+          lineHeight: 1.35,
+          color: "rgba(255,255,255,0.8)",
+          margin: 0,
+          zIndex: 2,
+        }}
+      >
+        Web designer &amp; developer
+      </p>
+
+      {/* ── Social Links ──────────────────────────────────── */}
+      {/*
+        Figma: left 40px (2.64vw), top 774px → bottom ~49px (4.99vh)
+        align-items: flex-end → all columns bottom-aligned in container.
+        Different column heights create descending staircase of icons left→right:
+          GitHub  (16.38vh) → icon at top, long line   (116px → 11.8vh)
+          LinkedIn(11.70vh) → icon 45px lower,  medium line (70px → 7.12vh)
+          Email   ( 6.61vh) → icon 95px lower,  short line  (22px → 2.24vh)
+      */}
       <div
         style={{
           position: "absolute",
-          left: "74px",
-          bottom: "27px",
-          height: "225px",
+          left: "clamp(16px, 2.64vw, 48px)",
+          bottom: "clamp(20px, 4.99vh, 70px)",
           display: "flex",
           flexDirection: "row",
-          alignItems: "center",
-          gap: "20px",
+          justifyContent: "center",
+          alignItems: "flex-end",
+          gap: "clamp(10px, 1.32vw, 22px)",
+          height: "clamp(80px, 16.28vh, 220px)",
+          overflow: "visible",
         }}
       >
-        {/* GitHub — tallest column (225px) */}
+        {/* GitHub — tallest column (full container height) */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "13px",
-            height: "225px",
+            gap: "clamp(8px, 0.86vw, 14px)",
+            height: "clamp(82px, 16.38vh, 222px)",
           }}
         >
           <a href="https://github.com" aria-label="GitHub" style={{ display: "block", flexShrink: 0 }}>
@@ -160,14 +199,14 @@ export default function WorkPage() {
           <div style={{ width: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
         </div>
 
-        {/* LinkedIn — medium column (167px), centered → 29px from top */}
+        {/* LinkedIn — medium column */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "13px",
-            height: "167px",
+            gap: "clamp(8px, 0.86vw, 14px)",
+            height: "clamp(60px, 11.70vh, 158px)",
           }}
         >
           <a href="https://linkedin.com" aria-label="LinkedIn" style={{ display: "block", flexShrink: 0 }}>
@@ -176,14 +215,14 @@ export default function WorkPage() {
           <div style={{ width: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
         </div>
 
-        {/* Email — shortest column (147px), centered → 39px from top */}
+        {/* Email — shortest column */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "11px",
-            height: "147px",
+            gap: "clamp(4px, 0.73vw, 10px)",
+            height: "clamp(36px, 6.61vh, 90px)",
           }}
         >
           <a href="mailto:contact@dominikpazurek.com" aria-label="Email" style={{ display: "block", flexShrink: 0 }}>
@@ -193,21 +232,61 @@ export default function WorkPage() {
         </div>
       </div>
 
-      {/* ── Blurred Logo Decoration ── */}
+      {/* ── Blurred Logo Decoration ───────────────────────── */}
+      {/*
+        Figma Frame 78: 549×536px at left:796px (52.54vw), top:331px (33.67vh).
+        Inner frames OVERFLOW the container (719/724px > 549px container)
+        → intentional: logo bleeds beyond right & bottom edges.
+
+        As % of 549px container width:
+          Ghost frame: 719px wide → 131.0%, left:12.39%, top:0%,    opacity:0.2 (below)
+          Solid frame: 724px wide → 131.9%, left:0%,    top:3.54%,  opacity:1   (on top)
+
+        At any viewport: solid frame right edge ≈ viewport right edge (auto-clips via overflow:hidden on parent).
+      */}
       <div
         style={{
           position: "absolute",
-          width: "549px",
-          height: "536px",
-          left: "947px",
-          top: "537px",
-          filter: "blur(11.35px)",
+          left: "52.54vw",
+          top: "33.67vh",
+          width: "36.24vw",
+          aspectRatio: "549 / 536",
+          filter: "blur(clamp(6px, 0.75vw, 13px))",
+          overflow: "visible",
           pointerEvents: "none",
           userSelect: "none",
         }}
       >
-        <DPLogo size={481} color="rgba(235,235,235,0.2)" />
+        {/* Layer 1 — ghost, upper-right, 0.2 opacity (rendered below) */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/dp.svg"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "12.39%",
+            top: 0,
+            width: "130.97%",
+            opacity: 0.2,
+          }}
+        />
+        {/* Layer 2 — solid, lower-left, full opacity (rendered on top) */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/dp.svg"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: 0,
+            top: "3.54%",
+            width: "131.88%",
+            opacity: 1,
+          }}
+        />
       </div>
+
     </div>
   );
 }
