@@ -76,30 +76,30 @@ export default function WorkPage() {
       <nav
         style={{
           position: "absolute",
-          top: "clamp(20px, 3.04vw, 60px)",
+          top: "46px",
           left: 0,
           right: 0,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 clamp(20px, 12.28vw, 200px)",
+          padding: "0 40px",
         }}
       >
-        <DPLogo size="max(36px, 3.17vw)" />
+        <DPLogo size={48} />
 
-        <div style={{ display: "flex", alignItems: "center", gap: "max(24px, 2.97vw)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "45px" }}>
           {[
-            { label: "Work", href: "/", active: true },
-            { label: "About", href: "/about", active: false },
-            { label: "Resume", href: "#", active: false },
+            { label: "Work",   href: "/",      active: true  },
+            { label: "About",  href: "/about", active: false },
+            { label: "Resume", href: "#",      active: false },
           ].map(({ label, href, active }) => (
             <a
               key={label}
               href={href}
               style={{
                 fontFamily: "var(--font-didot), Didot, serif",
-                fontSize: "max(14px, 1.32vw)",
-                lineHeight: 1.35,
+                fontSize: "20px",
+                lineHeight: "27px",
                 color: active ? "#ffffff" : "rgba(255,255,255,0.7)",
                 textDecoration: "none",
               }}
@@ -112,74 +112,78 @@ export default function WorkPage() {
 
       {/* ── Hero Text ─────────────────────────────────────── */}
       {/*
-        Figma baseline (1515×983px):
-          DOMINIK:  left 156px (10.3vw), top 313px (31.84vh), font 128px (8.45vw), lh 185px
-          PAZUREK:  left 152px (10.0vw), top 421px (42.83vh), font 128px (8.45vw), lh 185px
-          subtitle: left 152px (10.0vw), top 313px (31.84vh), font 32px  (2.11vw)
+        Container anchored by top/left (vw+vh).
+        Internal gaps expressed in `em` so they scale with font-size (vw),
+        not with viewport height — fixes overlap on wider/taller screens.
 
-        Subtitle and DOMINIK share the same top.
-        DOMINIK line-height (1.445×) creates ~28px of leading above the cap,
-        so subtitle text sits just above DOMINIK's caps — no overlap.
-        PAZUREK overlaps slightly into DOMINIK's line-box → tight brutalist stack.
+        Figma baseline (1515×983px, font 128px):
+          subtitle height  = 1.35 × 0.25em = 0.3375em  (32/128 = 0.25 ratio)
+          DOMINIK→PAZUREK gap = 108/128   = 0.844em
+
+        DOMINIK margins:
+          marginTop    = –0.3375em  → pulls DOMINIK up to share top with subtitle
+          marginBottom = –0.601em   → PAZUREK starts 0.844em below DOMINIK top
+                         (1.445 lineHeight – 0.844 gap = 0.601 to subtract)
       */}
-
-      {/* DOMINIK */}
-      <h1
+      <div
         style={{
           position: "absolute",
-          left: "max(16px, 10.30vw)",
           top: "max(80px, 31.84vh)",
-          fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
-          fontWeight: 400,
-          fontSize: "max(36px, 8.45vw)",
-          lineHeight: 1.1,
-          color: "#ffffff",
-          textShadow: "0px 8px 4px rgba(0,0,0,0.25)",
-          margin: 0,
-          whiteSpace: "nowrap",
-          zIndex: 1,
+          left: "40px",
         }}
       >
-        DOMINIK
-      </h1>
+        {/* Subtitle — sits in the leading above DOMINIK's caps */}
+        <p
+          style={{
+            position: "relative",
+            zIndex: 2,
+            fontFamily: "var(--font-didot), Didot, serif",
+            fontWeight: 400,
+            fontSize: "max(12px, 2.11vw)",
+            lineHeight: 1.35,
+            color: "rgba(255,255,255,0.8)",
+            margin: 0,
+          }}
+        >
+          Web designer &amp; developer
+        </p>
 
-      {/* PAZUREK */}
-      <h2
-        style={{
-          position: "absolute",
-          left: "max(16px, 10.03vw)",
-          top: "max(120px, 42.83vh)",
-          fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
-          fontWeight: 400,
-          fontSize: "max(36px, 8.45vw)",
-          lineHeight: 1.445,
-          color: "#ffffff",
-          textShadow: "0px 8px 4px rgba(0,0,0,0.25)",
-          margin: 0,
-          whiteSpace: "nowrap",
-          zIndex: 1,
-        }}
-      >
-        PAZUREK
-      </h2>
+        {/* DOMINIK */}
+        <h1
+          style={{
+            position: "relative",
+            zIndex: 1,
+            fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
+            fontWeight: 400,
+            fontSize: "max(36px, 8.45vw)",
+            lineHeight: 1.445,
+            color: "#ffffff",
+            textShadow: "0px 8px 4px rgba(0,0,0,0.25)",
+            margin: "-0.3375em 0 -0.601em 0",
+            whiteSpace: "nowrap",
+          }}
+        >
+          DOMINIK
+        </h1>
 
-      {/* "Web designer & developer" — same top as DOMINIK, sits above cap due to leading */}
-      <p
-        style={{
-          position: "absolute",
-          left: "max(16px, 10.03vw)",
-          top: "max(80px, 31.84vh)",
-          fontFamily: "var(--font-didot), Didot, serif",
-          fontWeight: 400,
-          fontSize: "max(12px, 2.11vw)",
-          lineHeight: 0.8,
-          color: "rgba(255,255,255,0.8)",
-          margin: 0,
-          zIndex: 2,
-        }}
-      >
-        Web designer &amp; developer
-      </p>
+        {/* PAZUREK — gap from DOMINIK scales with font-size via em */}
+        <h2
+          style={{
+            position: "relative",
+            zIndex: 1,
+            fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
+            fontWeight: 400,
+            fontSize: "max(36px, 8.45vw)",
+            lineHeight: 1.445,
+            color: "#ffffff",
+            textShadow: "0px 8px 4px rgba(0,0,0,0.25)",
+            margin: 0,
+            whiteSpace: "nowrap",
+          }}
+        >
+          PAZUREK
+        </h2>
+      </div>
 
       {/* ── Social Links ──────────────────────────────────── */}
       {/*
@@ -193,7 +197,7 @@ export default function WorkPage() {
       <div
         style={{
           position: "absolute",
-          left: "clamp(16px, 2.64vw, 48px)",
+          left: "40px",
           bottom: "clamp(20px, 4.99vh, 70px)",
           display: "flex",
           flexDirection: "row",
