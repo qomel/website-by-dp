@@ -11,3 +11,31 @@ body {
   color: #ffffff;
   overflow-x: hidden;
 }
+
+/* ─── Blurred logo decoration ─────────────────────────────── */
+/*
+  Below 1920px: scales proportionally with vw (Figma-accurate).
+  Above 1920px: width freezes at 696px (its 1920px value) and
+  anchors to the right edge so the solid inner frame always
+  bleeds ~7px past the viewport — same as at the 1515px design baseline.
+  right: 215px = 1920 - (52.54vw + 36.24vw) at 1920px
+*/
+.logo-deco {
+  position: absolute;
+  left: 52.54vw;
+  top: 33.67vh;
+  width: 36.24vw;
+  aspect-ratio: 549 / 536;
+  filter: blur(clamp(6px, 0.75vw, 13px));
+  overflow: visible;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (min-width: 1921px) {
+  .logo-deco {
+    left: auto;
+    right: 215px;
+    width: 696px;
+  }
+}

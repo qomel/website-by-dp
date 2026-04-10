@@ -19,6 +19,11 @@ const didot = localFont({
       weight: "400",
       style: "italic",
     },
+    {
+      path: "../assets/didot-2/Didot Title.otf",
+      weight: "300",
+      style: "normal",
+    },
   ],
   variable: "--font-didot",
   display: "swap",

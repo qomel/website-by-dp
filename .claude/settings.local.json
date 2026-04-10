@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find E:/GitHub/website-by-dp -name dp.svg -o -name dp.png -o -name *.ttf -o -name *.otf -o -name *.woff*)"
+      "Bash(find E:/GitHub/website-by-dp -name dp.svg -o -name dp.png -o -name *.ttf -o -name *.otf -o -name *.woff*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm run:*)",
+      "Bash(curl -s \"http://localhost:3000\")"
     ]
   }
 }
