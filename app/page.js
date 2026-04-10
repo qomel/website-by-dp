@@ -169,7 +169,7 @@ export default function WorkPage() {
           <a href="https://github.com" aria-label="GitHub" className="block shrink-0">
             <GitHubIcon />
           </a>
-          <div className="w-px flex-1" style={{ background: "rgba(255,255,255,0.8)" }} />
+          <div style={{ width: "1px", minWidth: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
           <div className="shrink-0 rounded-full" style={{ width: "5px", height: "5px", background: "rgba(255,255,255,0.8)" }} />
         </div>
 
@@ -186,7 +186,7 @@ export default function WorkPage() {
           <a href="https://linkedin.com" aria-label="LinkedIn" className="block shrink-0">
             <LinkedInIcon />
           </a>
-          <div className="w-px flex-1" style={{ background: "rgba(255,255,255,0.8)" }} />
+          <div style={{ width: "1px", minWidth: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
           <div className="shrink-0 rounded-full" style={{ width: "5px", height: "5px", background: "rgba(255,255,255,0.8)" }} />
         </div>
 
@@ -207,7 +207,7 @@ export default function WorkPage() {
           >
             <EmailIcon />
           </a>
-          <div className="w-px flex-1" style={{ background: "rgba(255,255,255,0.8)" }} />
+          <div style={{ width: "1px", minWidth: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
           <div className="shrink-0 rounded-full" style={{ width: "5px", height: "5px", background: "rgba(255,255,255,0.8)" }} />
         </div>
       </div>
