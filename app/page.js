@@ -15,7 +15,15 @@ const GitHubIcon = () => (
 
 const LinkedInIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-    <rect x="2.75" y="2.75" width="26.5" height="26.5" rx="4.25" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" />
+    <rect
+      x="2.75"
+      y="2.75"
+      width="26.5"
+      height="26.5"
+      rx="4.25"
+      stroke="rgba(255,255,255,0.8)"
+      strokeWidth="1.5"
+    />
     <rect x="8" y="13" width="3.5" height="11" fill="rgba(255,255,255,0.8)" />
     <circle cx="9.75" cy="9.75" r="1.75" fill="rgba(255,255,255,0.8)" />
     <path
@@ -27,8 +35,22 @@ const LinkedInIcon = () => (
 
 const EmailIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-    <rect x="4" y="8" width="24" height="16" rx="2" stroke="rgba(255,255,255,0.8)" strokeWidth="2" />
-    <path d="M4 11l12 8 12-8" stroke="rgba(255,255,255,0.8)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <rect
+      x="4"
+      y="8"
+      width="24"
+      height="16"
+      rx="2"
+      stroke="rgba(255,255,255,0.8)"
+      strokeWidth="2"
+    />
+    <path
+      d="M4 11l12 8 12-8"
+      stroke="rgba(255,255,255,0.8)"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -46,7 +68,6 @@ export default function WorkPage() {
         overflow: "hidden",
       }}
     >
-
       {/* ── Navbar ────────────────────────────────────────── */}
       {/*
         Figma: left calc(50% - 1200.79px/2 + 29.02px), top: 46.05px
@@ -64,21 +85,21 @@ export default function WorkPage() {
           padding: "0 clamp(20px, 12.28vw, 200px)",
         }}
       >
-        <DPLogo size="clamp(36px, 3.17vw, 56px)" />
+        <DPLogo size="max(36px, 3.17vw)" />
 
-        <div style={{ display: "flex", alignItems: "center", gap: "45px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "max(24px, 2.97vw)" }}>
           {[
-            { label: "Work",   href: "/",      active: true  },
-            { label: "About",  href: "/about", active: false },
-            { label: "Resume", href: "#",      active: false },
+            { label: "Work", href: "/", active: true },
+            { label: "About", href: "/about", active: false },
+            { label: "Resume", href: "#", active: false },
           ].map(({ label, href, active }) => (
             <a
               key={label}
               href={href}
               style={{
                 fontFamily: "var(--font-didot), Didot, serif",
-                fontSize: "clamp(14px, 1.32vw, 22px)",
-                lineHeight: "27px",
+                fontSize: "max(14px, 1.32vw)",
+                lineHeight: 1.35,
                 color: active ? "#ffffff" : "rgba(255,255,255,0.7)",
                 textDecoration: "none",
               }}
@@ -106,12 +127,12 @@ export default function WorkPage() {
       <h1
         style={{
           position: "absolute",
-          left: "clamp(16px, 10.30vw, 200px)",
-          top: "clamp(80px, 31.84vh, 400px)",
+          left: "max(16px, 10.30vw)",
+          top: "max(80px, 31.84vh)",
           fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
           fontWeight: 400,
-          fontSize: "clamp(36px, 8.45vw, 160px)",
-          lineHeight: 1.445,
+          fontSize: "max(36px, 8.45vw)",
+          lineHeight: 1.1,
           color: "#ffffff",
           textShadow: "0px 8px 4px rgba(0,0,0,0.25)",
           margin: 0,
@@ -126,11 +147,11 @@ export default function WorkPage() {
       <h2
         style={{
           position: "absolute",
-          left: "clamp(16px, 10.03vw, 200px)",
-          top: "clamp(120px, 42.83vh, 520px)",
+          left: "max(16px, 10.03vw)",
+          top: "max(120px, 42.83vh)",
           fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
           fontWeight: 400,
-          fontSize: "clamp(36px, 8.45vw, 160px)",
+          fontSize: "max(36px, 8.45vw)",
           lineHeight: 1.445,
           color: "#ffffff",
           textShadow: "0px 8px 4px rgba(0,0,0,0.25)",
@@ -146,12 +167,12 @@ export default function WorkPage() {
       <p
         style={{
           position: "absolute",
-          left: "clamp(16px, 10.03vw, 200px)",
-          top: "clamp(80px, 31.84vh, 400px)",
+          left: "max(16px, 10.03vw)",
+          top: "max(80px, 31.84vh)",
           fontFamily: "var(--font-didot), Didot, serif",
           fontWeight: 400,
-          fontSize: "clamp(12px, 2.11vw, 36px)",
-          lineHeight: 1.35,
+          fontSize: "max(12px, 2.11vw)",
+          lineHeight: 0.8,
           color: "rgba(255,255,255,0.8)",
           margin: 0,
           zIndex: 2,
@@ -193,10 +214,20 @@ export default function WorkPage() {
             height: "clamp(82px, 16.38vh, 222px)",
           }}
         >
-          <a href="https://github.com" aria-label="GitHub" style={{ display: "block", flexShrink: 0 }}>
+          <a
+            href="https://github.com"
+            aria-label="GitHub"
+            style={{ display: "block", flexShrink: 0 }}
+          >
             <GitHubIcon />
           </a>
-          <div style={{ width: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
+          <div
+            style={{
+              width: "1px",
+              flex: 1,
+              background: "rgba(255,255,255,0.8)",
+            }}
+          />
         </div>
 
         {/* LinkedIn — medium column */}
@@ -209,10 +240,20 @@ export default function WorkPage() {
             height: "clamp(60px, 11.70vh, 158px)",
           }}
         >
-          <a href="https://linkedin.com" aria-label="LinkedIn" style={{ display: "block", flexShrink: 0 }}>
+          <a
+            href="https://linkedin.com"
+            aria-label="LinkedIn"
+            style={{ display: "block", flexShrink: 0 }}
+          >
             <LinkedInIcon />
           </a>
-          <div style={{ width: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
+          <div
+            style={{
+              width: "1px",
+              flex: 1,
+              background: "rgba(255,255,255,0.8)",
+            }}
+          />
         </div>
 
         {/* Email — shortest column */}
@@ -225,10 +266,20 @@ export default function WorkPage() {
             height: "clamp(36px, 6.61vh, 90px)",
           }}
         >
-          <a href="mailto:contact@dominikpazurek.com" aria-label="Email" style={{ display: "block", flexShrink: 0 }}>
+          <a
+            href="mailto:contact@dominikpazurek.com"
+            aria-label="Email"
+            style={{ display: "block", flexShrink: 0 }}
+          >
             <EmailIcon />
           </a>
-          <div style={{ width: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
+          <div
+            style={{
+              width: "1px",
+              flex: 1,
+              background: "rgba(255,255,255,0.8)",
+            }}
+          />
         </div>
       </div>
 
@@ -286,7 +337,6 @@ export default function WorkPage() {
           }}
         />
       </div>
-
     </div>
   );
 }
