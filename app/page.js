@@ -1,4 +1,5 @@
 import DPLogo from "@/components/DPLogo";
+import LogoParallax from "@/components/LogoParallax";
 
 /* ─── Icon components ─────────────────────────────────────── */
 
@@ -39,24 +40,26 @@ export default function WorkPage() {
         className="absolute top-[46px] left-0 right-0 flex items-center justify-between"
         style={{ padding: "0 40px" }}
       >
-        <DPLogo size={48} />
+        <div className="anim-fade-in-down" style={{ animationDelay: "0.1s" }}>
+          <DPLogo size={48} />
+        </div>
 
         <div className="flex items-center gap-[45px]">
           {[
             { label: "Work", href: "/", active: true },
             { label: "About", href: "/about", active: false },
             { label: "Resume", href: "#", active: false },
-          ].map(({ label, href, active }) => (
+          ].map(({ label, href, active }, i) => (
             <a
               key={label}
               href={href}
-              className="no-underline"
+              className={`anim-fade-in-down no-underline nav-link${active ? " nav-link-active" : ""}`}
               style={{
                 fontFamily: "var(--font-didot), Didot, serif",
                 fontSize: "20px",
                 fontWeight: 300,
                 lineHeight: "27px",
-                color: active ? "#ffffff" : "rgba(255,255,255,0.7)",
+                animationDelay: `${0.1 + i * 0.12}s`,
               }}
             >
               {label}
@@ -86,13 +89,13 @@ export default function WorkPage() {
       >
         {/* Subtitle — sits in the leading above DOMINIK's caps */}
         <p
-          className="relative z-20 m-0"
+          className="anim-fade-in-up hero-subtitle relative z-20 m-0"
           style={{
             fontFamily: "var(--font-didot), Didot, serif",
             fontWeight: 300,
             fontSize: "clamp(8px, 1.8vw, 35px)",
             lineHeight: 1.35,
-            color: "rgba(255,255,255,0.8)",
+            animationDelay: "0.95s",
           }}
         >
           Web designer &amp; developer
@@ -100,7 +103,7 @@ export default function WorkPage() {
 
         {/* DOMINIK */}
         <h1
-          className="relative z-10 whitespace-nowrap"
+          className="anim-fade-in-up relative z-10 whitespace-nowrap"
           style={{
             fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
             fontWeight: 400,
@@ -109,6 +112,7 @@ export default function WorkPage() {
             color: "#ffffff",
             textShadow: "0px 8px 4px rgba(0,0,0,0.25)",
             margin: "-0.3375em 0 -0.601em 0",
+            animationDelay: "0.3s",
           }}
         >
           DOMINIK
@@ -116,7 +120,7 @@ export default function WorkPage() {
 
         {/* PAZUREK — gap from DOMINIK scales with font-size via em */}
         <h2
-          className="relative z-10 whitespace-nowrap m-0"
+          className="anim-fade-in-up relative z-10 whitespace-nowrap m-0"
           style={{
             fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
             fontWeight: 400,
@@ -124,6 +128,7 @@ export default function WorkPage() {
             lineHeight: 1.445,
             color: "#ffffff",
             textShadow: "0px 8px 4px rgba(0,0,0,0.25)",
+            animationDelay: "0.6s",
           }}
         >
           PAZUREK
@@ -158,103 +163,71 @@ export default function WorkPage() {
         }}
       >
         {/* GitHub — brak offsetu */}
-        <div
-          className="flex flex-col items-center"
-          style={{
-            gap: "clamp(6px, 0.86vw, 14px)",
-            height: "100%",
-            color: "rgba(255,255,255,0.8)",
-          }}
-        >
-          <a href="https://github.com" aria-label="GitHub" className="block shrink-0">
-            <GitHubIcon />
-          </a>
-          <div style={{ width: "1px", minWidth: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
-          <div className="shrink-0 rounded-full" style={{ width: "5px", height: "5px", background: "rgba(255,255,255,0.8)" }} />
+        <div style={{ overflow: "hidden", height: "100%", paddingTop: "6px" }}>
+          <div
+            className="anim-reveal-up flex flex-col items-center"
+            style={{
+              gap: "clamp(6px, 0.86vw, 14px)",
+              height: "100%",
+              color: "rgba(255,255,255,0.8)",
+              animationDelay: "0.78s",
+            }}
+          >
+            <a href="https://github.com" aria-label="GitHub" className="social-icon-link">
+              <GitHubIcon />
+            </a>
+            <div style={{ width: "1px", minWidth: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
+            <div className="shrink-0 rounded-full" style={{ width: "5px", height: "5px", background: "rgba(255,255,255,0.8)" }} />
+          </div>
         </div>
 
         {/* LinkedIn — ikona zaczyna się tam gdzie kreska GitHuba */}
-        <div
-          className="flex flex-col items-center"
-          style={{
-            gap: "clamp(6px, 0.86vw, 14px)",
-            height: "100%",
-            paddingTop: "calc(24px + clamp(6px, 0.86vw, 14px))",
-            color: "rgba(255,255,255,0.8)",
-          }}
-        >
-          <a href="https://linkedin.com" aria-label="LinkedIn" className="block shrink-0">
-            <LinkedInIcon />
-          </a>
-          <div style={{ width: "1px", minWidth: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
-          <div className="shrink-0 rounded-full" style={{ width: "5px", height: "5px", background: "rgba(255,255,255,0.8)" }} />
+        <div style={{ overflow: "hidden", height: "100%", paddingTop: "6px" }}>
+          <div
+            className="anim-reveal-up flex flex-col items-center"
+            style={{
+              gap: "clamp(6px, 0.86vw, 14px)",
+              height: "100%",
+              paddingTop: "calc(18px + clamp(6px, 0.86vw, 14px))",
+              color: "rgba(255,255,255,0.8)",
+              animationDelay: "0.88s",
+            }}
+          >
+            <a href="https://linkedin.com" aria-label="LinkedIn" className="social-icon-link">
+              <LinkedInIcon />
+            </a>
+            <div style={{ width: "1px", minWidth: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
+            <div className="shrink-0 rounded-full" style={{ width: "5px", height: "5px", background: "rgba(255,255,255,0.8)" }} />
+          </div>
         </div>
 
         {/* Email — ikona zaczyna się tam gdzie kreska LinkedIna */}
-        <div
-          className="flex flex-col items-center"
-          style={{
-            gap: "clamp(6px, 0.86vw, 14px)",
-            height: "100%",
-            paddingTop: "calc(48px + 2 * clamp(6px, 0.86vw, 14px))",
-            color: "rgba(255,255,255,0.8)",
-          }}
-        >
-          <a
-            href="mailto:contact@dominikpazurek.com"
-            aria-label="Email"
-            className="block shrink-0"
+        <div style={{ overflow: "hidden", height: "100%", paddingTop: "6px" }}>
+          <div
+            className="anim-reveal-up flex flex-col items-center"
+            style={{
+              gap: "clamp(6px, 0.86vw, 14px)",
+              height: "100%",
+              paddingTop: "calc(36px + 2 * clamp(6px, 0.86vw, 14px))",
+              color: "rgba(255,255,255,0.8)",
+              animationDelay: "0.98s",
+            }}
           >
-            <EmailIcon />
-          </a>
-          <div style={{ width: "1px", minWidth: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
-          <div className="shrink-0 rounded-full" style={{ width: "5px", height: "5px", background: "rgba(255,255,255,0.8)" }} />
+            <a
+              href="mailto:contact@dominikpazurek.com"
+              aria-label="Email"
+              className="social-icon-link"
+            >
+              <EmailIcon />
+            </a>
+            <div style={{ width: "1px", minWidth: "1px", flex: 1, background: "rgba(255,255,255,0.8)" }} />
+            <div className="shrink-0 rounded-full" style={{ width: "5px", height: "5px", background: "rgba(255,255,255,0.8)" }} />
+          </div>
         </div>
       </div>
 
-      {/* ── Blurred Logo Decoration ───────────────────────── */}
-      {/*
-        Figma Frame 78: 549×536px at left:796px (52.54vw), top:331px (33.67vh).
-        Inner frames OVERFLOW the container (719/724px > 549px container)
-        → intentional: logo bleeds beyond right & bottom edges.
-
-        As % of 549px container width:
-          Ghost frame: 719px wide → 131.0%, left:12.39%, top:0%,    opacity:0.2 (below)
-          Solid frame: 724px wide → 131.9%, left:0%,    top:3.54%,  opacity:1   (on top)
-
-        width capped at 780px — at 2560px viewport the solid frame bottom sits
-        ~65px below the viewport, matching the ~66px bleed at the Figma baseline.
-      */}
-      <div className="logo-deco">
-        {/* Layer 1 — ghost, upper-right, 0.2 opacity (rendered below) */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/dp.svg"
-          alt=""
-          aria-hidden="true"
-          className="absolute"
-          style={{
-            left: "12.39%",
-            top: 0,
-            width: "130.97%",
-            opacity: 0.2,
-          }}
-        />
-        {/* Layer 2 — solid, lower-left, full opacity (rendered on top) */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/dp.svg"
-          alt=""
-          aria-hidden="true"
-          className="absolute"
-          style={{
-            left: 0,
-            top: "3.54%",
-            width: "131.88%",
-            opacity: 1,
-          }}
-        />
-      </div>
+      {/* ── Blurred Logo Decoration (with cursor parallax) ──── */}
+      <LogoParallax />
     </div>
   );
 }

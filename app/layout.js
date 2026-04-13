@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import { Dela_Gothic_One } from "next/font/google";
 import "./globals.css";
+import HoverStyles from "@/components/HoverStyles";
 
 const didot = localFont({
   src: [
@@ -47,7 +48,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${didot.variable} ${delaGothicOne.variable} h-full`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <HoverStyles />
+        {children}
+      </body>
     </html>
   );
 }
