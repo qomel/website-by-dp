@@ -1,6 +1,9 @@
 import DPLogo from "@/components/DPLogo";
 import LogoParallax from "@/components/LogoParallax";
 import WorkSection from "@/components/WorkSection";
+import SectionDivider from "@/components/Divider";
+import ExperienceSection from "@/components/ExperienceSection";
+import Footer from "@/components/Footer";
 
 /* ─── Icon components ─────────────────────────────────────── */
 
@@ -309,6 +312,9 @@ export default function WorkPage() {
     <LogoParallax />
 
     <WorkSection />
+    <SectionDivider />
+    <ExperienceSection />
+    <Footer />
     </div>
   );
 }

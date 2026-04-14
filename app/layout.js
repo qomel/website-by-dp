@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Dela_Gothic_One } from "next/font/google";
+import { Dela_Gothic_One, Roboto } from "next/font/google";
 import "./globals.css";
 import HoverStyles from "@/components/HoverStyles";
 
@@ -30,6 +30,13 @@ const didot = localFont({
   display: "swap",
 });
 
+const roboto = Roboto({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  display: "swap",
+});
+
 const delaGothicOne = Dela_Gothic_One({
   weight: "400",
   subsets: ["latin"],
@@ -46,7 +53,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${didot.variable} ${delaGothicOne.variable} h-full`}
+      className={`${didot.variable} ${delaGothicOne.variable} ${roboto.variable} h-full`}
     >
       <body className="min-h-full">
         <HoverStyles />
