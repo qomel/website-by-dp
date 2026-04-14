@@ -109,7 +109,7 @@ export default function WorkSection() {
         <div
           style={{
             position: "sticky",
-            top: "50vh",
+            top: "8vh",
             height: 0,
             overflow: "visible",
             zIndex: 10,
