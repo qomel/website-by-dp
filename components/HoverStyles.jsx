@@ -42,33 +42,6 @@ export default function HoverStyles() {
         opacity: 1 !important;
       }
 
-      /* ── Subtitle hover ───────────────────────────────────── */
-      .hero-subtitle {
-        position: relative;
-        cursor: default;
-        color: rgba(255, 255, 255, 0.8);
-        transition: color 0.3s ease;
-      }
-      /* smukła linia 1px, asymetrycznie szersza o ~18% z prawej */
-      .hero-subtitle::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 118%;
-        height: 1px;
-        background: rgba(255, 255, 255, 0.5);
-        transform: scaleX(0);
-        transform-origin: left center;
-        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .hero-subtitle:hover {
-        color: rgba(255, 255, 255, 1);
-        font-style: italic;
-      }
-      .hero-subtitle:hover::after {
-        transform: scaleX(1);
-      }
     `}</style>
   );
 }
