@@ -4,6 +4,7 @@ import "./globals.css";
 import HoverStyles from "@/components/HoverStyles";
 import SocialLinks from "@/components/SocialLinks";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const didot = localFont({
   src: [
@@ -62,6 +63,7 @@ export default function RootLayout({ children }) {
         <SocialLinks />
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
