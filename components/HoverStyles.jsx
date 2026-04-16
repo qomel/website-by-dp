@@ -18,11 +18,12 @@ export default function HoverStyles() {
       .nav-link-active::after {
         content: '';
         position: absolute;
-        bottom: -8px;
+        bottom: -4px;
         left: 50%;
         transform: translateX(-50%);
-        width: 4px;
-        height: 4px;
+        width: var(--dot-size, 4px);
+        height: var(--dot-size, 4px);
+        transition: width 0.2s ease, height 0.2s ease;
         border-radius: 50%;
         background: currentColor;
       }

@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import { Dela_Gothic_One, Roboto } from "next/font/google";
 import "./globals.css";
 import HoverStyles from "@/components/HoverStyles";
+import SocialLinks from "@/components/SocialLinks";
 
 const didot = localFont({
   src: [
@@ -57,6 +58,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full">
         <HoverStyles />
+        <SocialLinks />
         {children}
       </body>
     </html>

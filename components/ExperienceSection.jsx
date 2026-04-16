@@ -77,13 +77,17 @@ function Entry({ entry, open, onToggle }) {
   return (
     <div>
       <Divider />
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        padding: 'clamp(16px, 2.1vw, 32px) 0',
-        gap: '16px',
-      }}>
+      <div
+        onClick={() => { if (!open) onToggle() }}
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          padding: 'clamp(16px, 2.1vw, 32px) 0',
+          gap: '16px',
+          cursor: open ? 'default' : 'pointer',
+        }}
+      >
         {/* Left: date + name + expanded details */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
           <span style={{
@@ -144,7 +148,7 @@ function Entry({ entry, open, onToggle }) {
 
         {/* Toggle button */}
         <button
-          onClick={onToggle}
+          onClick={e => { e.stopPropagation(); onToggle() }}
           style={{
             background: 'none', border: 'none', padding: 0, cursor: 'pointer',
             marginTop: 'clamp(8px, 1.5vw, 24px)', flexShrink: 0,
@@ -197,7 +201,7 @@ export default function ExperienceSection() {
             top: 0,
             writingMode: 'vertical-rl',
             fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
-            fontSize: 'clamp(32px, 4.22vw, 64px)',
+            fontSize: 'clamp(18px, 2.2vw, 34px)',
             fontWeight: 400,
             color: 'rgba(255,255,255,0.1)',
             letterSpacing: '0.05em',
