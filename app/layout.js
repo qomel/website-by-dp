@@ -3,6 +3,7 @@ import { Dela_Gothic_One, Roboto } from "next/font/google";
 import "./globals.css";
 import HoverStyles from "@/components/HoverStyles";
 import SocialLinks from "@/components/SocialLinks";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const didot = localFont({
   src: [
@@ -60,6 +61,7 @@ export default function RootLayout({ children }) {
         <HoverStyles />
         <SocialLinks />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
