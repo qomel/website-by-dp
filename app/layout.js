@@ -3,6 +3,8 @@ import { Dela_Gothic_One, Roboto } from "next/font/google";
 import "./globals.css";
 import HoverStyles from "@/components/HoverStyles";
 import SocialLinks from "@/components/SocialLinks";
+import { LangProvider } from "@/components/LangContext";
+import LangSwitcher from "@/components/LangSwitcher";
 
 const didot = localFont({
   src: [
@@ -60,9 +62,12 @@ export default function RootLayout({ children }) {
       className={`${didot.variable} ${delaGothicOne.variable} ${roboto.variable} h-full`}
     >
       <body className="min-h-full">
-        <HoverStyles />
-        <SocialLinks />
-        {children}
+        <LangProvider>
+          <HoverStyles />
+          <SocialLinks />
+          <LangSwitcher />
+          {children}
+        </LangProvider>
       </body>
     </html>
   );

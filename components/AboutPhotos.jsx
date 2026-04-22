@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
+import { useLang } from './LangContext'
 
 function useReveal(triggerDelay = 0) {
   const ref = useRef(null)
@@ -47,6 +48,7 @@ function RevealPhoto({ src, alt, width, height, style, from = 'left', delay = 0 
 }
 
 export default function AboutPhotos() {
+  const { tr } = useLang()
   return (
     <>
       <style>{`
@@ -120,7 +122,7 @@ export default function AboutPhotos() {
             color:      'rgba(255,255,255,0.8)',
             margin:     0,
           }}>
-            Photography — completed course, still shooting.
+            {tr.about.sideQuest.text}
           </p>
         </div>
 

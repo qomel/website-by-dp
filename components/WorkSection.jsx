@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import mockupPromed from "@/assets/mockup-promed.png";
 import mockupTown from "@/assets/mockup-town.jpg";
 import mockupEnergy from "@/assets/mockup-energy.jpg";
+import { useLang } from "./LangContext";
 
 /* ── Reveal hook ───────────────────────────────────────────── */
 // Odpala gdy 55% wysokości elementu LUB 400px (co mniejsze) jest widoczne.
@@ -155,6 +156,7 @@ function MockupCard({ src, alt, sizes, style, delay = 0, from = 'left' }) {
 
 /* ── Section ───────────────────────────────────────────────── */
 export default function WorkSection() {
+  const { tr } = useLang()
   return (
     <>
       <style>{`
@@ -203,15 +205,15 @@ export default function WorkSection() {
 
           {/* ── 01 PRO-MED ── */}
           <MockupCard src={mockupPromed} alt="PRO-MED project"    sizes="72vw" from="left"  style={{ left: "2.64%",  top: "3.93%",  width: "72.08%" }} />
-          <LabelRow   num="01/" name="PRO-MED"    category="CLIENT"    delay={120} style={{ left: "38.68%", top: "4.20%",  width: "38.09%" }} />
+          <LabelRow   num="01/" name="PRO-MED"    category={tr.work.client}    delay={120} style={{ left: "38.68%", top: "4.20%",  width: "38.09%" }} />
 
           {/* ── 02 PIXEL TOWN ── */}
           <MockupCard src={mockupTown}   alt="PIXEL TOWN project" sizes="48vw" from="right" style={{ left: "41.32%", top: "37.57%", width: "47.88%" }} />
-          <LabelRow   num="02/" name="PIXEL TOWN" category="PORTFOLIO" delay={120} style={{ left: "42.64%", top: "37.57%", width: "52.11%" }} />
+          <LabelRow   num="02/" name="PIXEL TOWN" category={tr.work.portfolio} delay={120} style={{ left: "42.64%", top: "37.57%", width: "52.11%" }} />
 
           {/* ── 03 ENERGY ── */}
           <MockupCard src={mockupEnergy} alt="ENERGY project"     sizes="54vw" from="left"  style={{ left: "10.63%", top: "67.71%", width: "53.47%" }} />
-          <LabelRow   num="03/" name="ENERGY"     category="PORTFOLIO" delay={120} style={{ left: "7.13%",  top: "64.80%", width: "40.53%" }} />
+          <LabelRow   num="03/" name="ENERGY"     category={tr.work.portfolio} delay={120} style={{ left: "7.13%",  top: "64.80%", width: "40.53%" }} />
 
         </div>
       </section>

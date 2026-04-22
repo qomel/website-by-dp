@@ -1,37 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-
-/* ─── Data ────────────────────────────────────────────────── */
-const ENTRIES = [
-  {
-    id: 'kostar',
-    company: 'KOSTAR',
-    date: '/06. 2025 - Obecnie',
-    tags: ['Helpdesk', 'Server', 'SQL', 'mMEDICA', 'Network'],
-    description:
-      'Responsible for hardware assembly, diagnostics and repair, alongside deployment and maintenance of SQL, SMTP and web servers.',
-    defaultOpen: true,
-  },
-  {
-    id: 'giganci',
-    company: 'GIGANCI PROGRAMOWANIA',
-    date: '/09. 2024 - 06. 2025',
-    tags: ['Python', 'Nauczanie'],
-    description:
-      'Teaching programming fundamentals in Python to children and young learners aged 7–13. Developing logical thinking and algorithmic skills through hands-on classes, preparing custom learning materials tailored to each group.',
-    defaultOpen: false,
-  },
-  {
-    id: 'promed',
-    company: 'PRO-MED',
-    date: '/03. 2023 - 09. 2024',
-    tags: ['Windows', 'Hardware', 'Helpdesk'],
-    description:
-      'Installation and configuration of computer hardware across multiple workstations. Diagnosing and repairing hardware failures, and providing ongoing technical support to end users.',
-    defaultOpen: false,
-  },
-]
+import { useLang } from './LangContext'
 
 /* ─── Reveal hook ────────────────────────────────────────── */
 function useReveal(delay = 0) {
@@ -41,7 +11,7 @@ function useReveal(delay = 0) {
     if (!el) return
     const check = () => {
       const rect = el.getBoundingClientRect()
-      if (rect.top < window.innerHeight * 0.88) {
+      if (rect.top < window.innerHeight * 0.68) {
         setTimeout(() => el.classList.add('exp-visible'), delay)
         window.removeEventListener('scroll', check)
       }
@@ -182,6 +152,35 @@ function Entry({ entry, open, onToggle, index = 0 }) {
 
 /* ─── Section ─────────────────────────────────────────────── */
 export default function ExperienceSection() {
+  const { tr } = useLang()
+
+  const ENTRIES = [
+    {
+      id: 'kostar',
+      company: 'KOSTAR',
+      date: `/06. 2025 - ${tr.experience.currently}`,
+      tags: ['Helpdesk', 'Server', 'SQL', 'mMEDICA', 'Network'],
+      description: tr.experience.kostar.description,
+      defaultOpen: true,
+    },
+    {
+      id: 'giganci',
+      company: 'GIGANCI PROGRAMOWANIA',
+      date: '/09. 2024 - 06. 2025',
+      tags: ['Python', 'Nauczanie'],
+      description: tr.experience.giganci.description,
+      defaultOpen: false,
+    },
+    {
+      id: 'promed',
+      company: 'PRO-MED',
+      date: '/03. 2023 - 09. 2024',
+      tags: ['Windows', 'Hardware', 'Helpdesk'],
+      description: tr.experience.promed.description,
+      defaultOpen: false,
+    },
+  ]
+
   const [openId, setOpenId] = useState(ENTRIES[0].id)
 
   return (

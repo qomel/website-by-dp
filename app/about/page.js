@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 import mockupPromed from "@/assets/mockup-promed.png";
 import AboutPhotos from "@/components/AboutPhotos";
+import { useLang } from "@/components/LangContext";
 
 /* ── Reveal hook ─────────────────────────────────────────────── */
 function useReveal(delay = 0) {
@@ -29,6 +30,7 @@ function useReveal(delay = 0) {
 
 /* ─── Page ─────────────────────────────────────────────────── */
 export default function AboutPage() {
+  const { tr } = useLang()
   const whoRef      = useReveal(0)
   const whoMockRef  = useReveal(100)
   const whatRef     = useReveal(0)
@@ -142,7 +144,7 @@ export default function AboutPage() {
               color:      "rgba(255,255,255,0.8)",
               margin:     0,
             }}>
-              I'm Dominik — a frontend developer and web designer based in PL/Gliwice. I design in Figma, reach for Tailwind CSS on every project, and I'm currently getting serious about Next.js.
+              {tr.about.who.text}
             </p>
           </div>
 
@@ -191,7 +193,7 @@ export default function AboutPage() {
               color:      "rgba(255,255,255,0.8)",
               margin:     0,
             }}>
-              Design and code, both. Layouts, components, the whole thing. My current stack is Figma + Next.js — I go from wireframe to deployed product without handing things off.
+              {tr.about.whatIDo.text}
             </p>
           </div>
 
@@ -214,7 +216,7 @@ export default function AboutPage() {
               color:      "rgba(255,255,255,0.8)",
               margin:     0,
             }}>
-              So far: three client projects, several prototypes, and a thesis e-commerce project for a medical company built with Tailwind + Django as part of a team. Still figuring out where I want to go next — open to freelance and full-time.
+              {tr.about.soFar.text}
             </p>
           </div>
 
@@ -290,10 +292,10 @@ export default function AboutPage() {
               maxWidth:   "1398px",
             }}
           >
-            B.Eng. Computer Science — Frontend specialization<br />
-            Mertio WSB, Chorzów /2026<br />
+            {tr.about.background.p1Title}<br />
+            {tr.about.background.p1Sub}<br />
             <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "clamp(14px, 2.11vw, 32px)" }}>
-              Three years of frontend-focused curriculum — HTML, CSS, JavaScript, the usual stack. Capped with a team e-commerce project for a medical client.
+              {tr.about.background.p1Body}
             </span>
           </p>
 
@@ -310,10 +312,10 @@ export default function AboutPage() {
               maxWidth:   "1199px",
             }}
           >
-            Game Design — currently studying<br />
-            TEB Edukacja /2026<br />
+            {tr.about.background.p2Title}<br />
+            {tr.about.background.p2Sub}<br />
             <span style={{ fontWeight: 400, color: "rgba(255,255,255,0.7)", fontSize: "clamp(14px, 2.11vw, 32px)" }}>
-              Theory, emotion-driven design, Unity and Unreal in practice. Feeds directly into what I build as a hobby.
+              {tr.about.background.p2Body}
             </span>
           </p>
 
@@ -329,7 +331,7 @@ export default function AboutPage() {
               maxWidth:   "1199px",
             }}
           >
-            IT Technical School — before all of that.
+            {tr.about.background.p3}
           </p>
         </div>
 
