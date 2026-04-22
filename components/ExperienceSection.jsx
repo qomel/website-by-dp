@@ -173,6 +173,33 @@ export default function ExperienceSection() {
       position: 'relative',
       overflow: 'clip',
     }}>
+
+      {/* ── Sticky EXPERIENCE label — poza kontenerem, przy prawej krawędzi ekranu ── */}
+      <div style={{
+        position: 'sticky',
+        top: '8vh',
+        height: 0,
+        overflow: 'visible',
+        zIndex: 10,
+        pointerEvents: 'none',
+        userSelect: 'none',
+      }}>
+        <div style={{
+          position: 'absolute',
+          right: 'clamp(6px, 1.2vw, 20px)',
+          top: 0,
+          writingMode: 'vertical-rl',
+          fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
+          fontSize: 'clamp(11px, 1.4vw, 26px)',
+          fontWeight: 400,
+          color: 'rgba(255,255,255,0.1)',
+          letterSpacing: '0.05em',
+          lineHeight: 1,
+        }}>
+          EXPERIENCE
+        </div>
+      </div>
+
       <div style={{
         position: 'relative',
         width: '100%',
@@ -180,36 +207,6 @@ export default function ExperienceSection() {
         margin: '0 auto',
         paddingBottom: 'clamp(40px, 5vw, 80px)',
       }}>
-
-        {/* ── Sticky EXPERIENCE label ─────────────────────────
-            top: 0 zamiast 50vh — label zaczyna się od góry
-            sekcji i jedzie z nami do końca. Nie wychodzi
-            ponad sekcję bo overflow:clip to przycina.
-        ──────────────────────────────────────────────────── */}
-        <div style={{
-          position: 'sticky',
-          top: '8vh',
-          height: 0,
-          overflow: 'visible',
-          zIndex: 10,
-          pointerEvents: 'none',
-          userSelect: 'none',
-        }}>
-          <div style={{
-            position: 'absolute',
-            right: 0,
-            top: 0,
-            writingMode: 'vertical-rl',
-            fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
-            fontSize: 'clamp(18px, 2.2vw, 34px)',
-            fontWeight: 400,
-            color: 'rgba(255,255,255,0.1)',
-            letterSpacing: '0.05em',
-            lineHeight: 1,
-          }}>
-            EXPERIENCE
-          </div>
-        </div>
 
         {/* ── Content — wyśrodkowany ──────────────────────── */}
         <div style={{
