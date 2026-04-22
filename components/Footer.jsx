@@ -12,7 +12,7 @@ export default function Footer() {
         width: '100%',
         maxWidth: '1515px',
         margin: '0 auto',
-        height: 'clamp(280px, 39.2vw, 594px)',
+        height: 'clamp(224px, 31.4vw, 475px)',
       }}>
 
         {/* ── DP Logo ─────────────────────────────────────────
@@ -48,14 +48,14 @@ export default function Footer() {
           gap: 'clamp(28px, 3.96vw, 60px)',
         }}>
           {/* GitHub */}
-          <a href="https://github.com" aria-label="GitHub" style={{ display: 'block', color: 'rgba(255,255,255,0.8)' }}>
+          <a href="https://github.com/qomel" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon-link" style={{ color: '#fff' }}>
             <svg width="clamp(20px,2.11vw,32px)" height="clamp(20px,2.11vw,32px)" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 'clamp(20px,2.11vw,32px)', height: 'clamp(20px,2.11vw,32px)', display: 'block' }}>
               <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
             </svg>
           </a>
 
           {/* LinkedIn */}
-          <a href="https://linkedin.com" aria-label="LinkedIn" style={{ display: 'block', color: 'rgba(255,255,255,0.8)' }}>
+          <a href="https://www.linkedin.com/in/dominik-pazurek-7089282a5/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon-link" style={{ color: '#fff' }}>
             <svg width="clamp(20px,2.11vw,32px)" height="clamp(20px,2.11vw,32px)" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" style={{ width: 'clamp(20px,2.11vw,32px)', height: 'clamp(20px,2.11vw,32px)', display: 'block' }}>
               <path d="M4.5 9.5H4C3.06 9.5 2.59 9.5 2.29 9.79 2 10.09 2 10.56 2 11.5V20c0 .94 0 1.41.29 1.71.29.29.77.29 1.71.29H4.5c.94 0 1.41 0 1.71-.29.29-.29.29-.77.29-1.71v-8.5c0-.94 0-1.41-.29-1.71C5.91 9.5 5.44 9.5 4.5 9.5z" />
               <path d="M6.5 4.25a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0z" />
@@ -64,7 +64,7 @@ export default function Footer() {
           </a>
 
           {/* Mail */}
-          <a href="mailto:contact@dominikpazurek.com" aria-label="Email" style={{ display: 'block', color: 'rgba(255,255,255,0.8)' }}>
+          <a href="mailto:dominik.pazurek@gmail.com" aria-label="Email" className="social-icon-link" style={{ color: '#fff' }}>
             <svg width="clamp(20px,2.11vw,32px)" height="clamp(20px,2.11vw,32px)" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 'clamp(20px,2.11vw,32px)', height: 'clamp(20px,2.11vw,32px)', display: 'block' }}>
               <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
               <path d="M3 7l9 6 9-6" />
@@ -88,7 +88,9 @@ export default function Footer() {
           {['Work', 'About', 'Resume'].map(label => (
             <a
               key={label}
-              href={label === 'Work' ? '/' : `/${label.toLowerCase()}`}
+              href={label === 'Resume' ? '/resume.pdf' : label === 'Work' ? '/' : `/${label.toLowerCase()}`}
+              target={label === 'Resume' ? '_blank' : undefined}
+              rel={label === 'Resume' ? 'noopener noreferrer' : undefined}
               style={{
                 fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
                 fontSize: 'clamp(22px, 3.17vw, 48px)',

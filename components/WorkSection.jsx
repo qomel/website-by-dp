@@ -7,17 +7,31 @@ import mockupTown from "@/assets/mockup-town.jpg";
 import mockupEnergy from "@/assets/mockup-energy.jpg";
 
 /* ── Reveal hook ───────────────────────────────────────────── */
-function useReveal() {
+// Odpala gdy 55% wysokości elementu LUB 400px (co mniejsze) jest widoczne.
+// Małe elementy (labele ~50px) → odpalają przy ~28px widocznych.
+// Duże elementy (mockupy ~800px) → odpalają przy ~400px widocznych.
+function useReveal(triggerDelay = 0) {
   const ref = useRef(null)
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const io = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { el.classList.add('work-visible'); io.disconnect() } },
-      { threshold: 0.15, rootMargin: "0px 0px -18% 0px" }
-    )
-    io.observe(el)
-    return () => io.disconnect()
+
+    const check = () => {
+      const rect          = el.getBoundingClientRect()
+      const visibleTop    = Math.max(rect.top, 0)
+      const visibleBottom = Math.min(rect.bottom, window.innerHeight)
+      const visiblePx     = Math.max(visibleBottom - visibleTop, 0)
+      const threshold     = Math.min(rect.height * 0.55, 400)
+
+      if (visiblePx >= threshold) {
+        window.removeEventListener('scroll', check)
+        setTimeout(() => el.classList.add('work-visible'), triggerDelay)
+      }
+    }
+
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    return () => window.removeEventListener('scroll', check)
   }, [])
   return ref
 }
@@ -69,7 +83,7 @@ function Category({ children }) {
 }
 
 function LabelRow({ num, name, category, style, delay = 0 }) {
-  const ref = useReveal()
+  const ref = useReveal(180)
   return (
     <div
       ref={ref}
@@ -98,12 +112,23 @@ function MockupCard({ src, alt, sizes, style, delay = 0, from = 'left' }) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const io = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { el.classList.add('work-visible'); io.disconnect() } },
-      { threshold: 0.15, rootMargin: "0px 0px -18% 0px" }
-    )
-    io.observe(el)
-    return () => io.disconnect()
+
+    const check = () => {
+      const rect          = el.getBoundingClientRect()
+      const visibleTop    = Math.max(rect.top, 0)
+      const visibleBottom = Math.min(rect.bottom, window.innerHeight)
+      const visiblePx     = Math.max(visibleBottom - visibleTop, 0)
+      const threshold     = Math.min(rect.height * 0.55, 400)
+
+      if (visiblePx >= threshold) {
+        el.classList.add('work-visible')
+        window.removeEventListener('scroll', check)
+      }
+    }
+
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    return () => window.removeEventListener('scroll', check)
   }, [])
 
   return (
@@ -164,7 +189,7 @@ export default function WorkSection() {
             top:         0,
             writingMode: "vertical-rl",
             fontFamily:  "var(--font-dela-gothic), 'Dela Gothic One', cursive",
-            fontSize:    "clamp(11px, 1.4vw, 26px)",
+            fontSize:    "clamp(16px, 2vw, 38px)",
             fontWeight:  400,
             color:       "rgba(255,255,255,0.1)",
             letterSpacing: "0.05em",

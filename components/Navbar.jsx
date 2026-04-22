@@ -11,7 +11,7 @@ const ease  = (t) => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2
 const NAV_LINKS = [
   { label: 'Work',   href: '/'      },
   { label: 'About',  href: '/about' },
-  { label: 'Resume', href: '#'      },
+  { label: 'Resume', href: '/resume.pdf', target: '_blank' },
 ]
 
 export default function Navbar() {
@@ -119,13 +119,15 @@ export default function Navbar() {
         ref={linksWrapRef}
         style={{ display: 'flex', alignItems: 'center', gap: '45px' }}
       >
-        {NAV_LINKS.map(({ label, href }, i) => {
+        {NAV_LINKS.map(({ label, href, target }, i) => {
           const active = href === '/' ? pathname === '/' : pathname.startsWith(href)
           return (
             <a
               key={label}
               ref={el => { linkRefs.current[i] = el }}
               href={href}
+              target={target}
+              rel={target === '_blank' ? 'noopener noreferrer' : undefined}
               className={`anim-fade-in-down no-underline nav-link${active ? ' nav-link-active' : ''}`}
               style={{
                 fontFamily:     'var(--font-didot), Didot, serif',
