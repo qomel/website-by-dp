@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import DPLogo from './DPLogo'
+import { useLang } from './LangContext'
 
 const lerp  = (a, b, t) => a + (b - a) * t
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v))
@@ -11,11 +12,18 @@ const ease  = (t) => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2
 const NAV_LINKS = [
   { label: 'Work',   href: '/'      },
   { label: 'About',  href: '/about' },
-  { label: 'Resume', href: '#'      },
+  { label: 'Resume', href: '/CV-Dominik-Pazurek.pdf', newTab: true },
 ]
 
 export default function Navbar() {
   const pathname = usePathname()
+  const { lang, setLang, tr } = useLang()
+
+  const NAV_LINKS = [
+    { label: tr.nav.work,   href: '/'           },
+    { label: tr.nav.about,  href: '/about'      },
+    { label: tr.nav.resume, href: '/resume.pdf', target: '_blank' },
+  ]
 
   const navRef        = useRef(null)
   const bgRef         = useRef(null)
@@ -27,10 +35,10 @@ export default function Navbar() {
     let rafId
 
     const loop = () => {
-      const p = ease(clamp(window.scrollY / 80, 0, 1))
+      const p = ease(clamp(window.scrollY / 200, 0, 1))
 
-      // Background reveals top→bottom AFTER text settles (starts at scrollY 65px)
-      const bgP = ease(clamp((window.scrollY - 65) / 40, 0, 1))
+      // Background reveals top→bottom AFTER text settles (starts at scrollY 150px)
+      const bgP = ease(clamp((window.scrollY - 150) / 70, 0, 1))
 
       const nav = navRef.current
       if (nav) {
@@ -114,18 +122,20 @@ export default function Navbar() {
         <DPLogo size={48} />
       </div>
 
-      {/* Links */}
+      {/* Links + Lang switcher */}
       <div
         ref={linksWrapRef}
         style={{ display: 'flex', alignItems: 'center', gap: '45px' }}
       >
-        {NAV_LINKS.map(({ label, href }, i) => {
-          const active = href === '/' ? pathname === '/' : pathname.startsWith(href)
+        {NAV_LINKS.map(({ label, href, newTab }, i) => {
+          const active = !newTab && (href === '/' ? pathname === '/' : pathname.startsWith(href))
           return (
             <a
               key={label}
               ref={el => { linkRefs.current[i] = el }}
               href={href}
+              target={newTab ? '_blank' : undefined}
+              rel={newTab ? 'noopener noreferrer' : undefined}
               className={`anim-fade-in-down no-underline nav-link${active ? ' nav-link-active' : ''}`}
               style={{
                 fontFamily:     'var(--font-didot), Didot, serif',
@@ -139,6 +149,7 @@ export default function Navbar() {
             </a>
           )
         })}
+
       </div>
     </nav>
   )
