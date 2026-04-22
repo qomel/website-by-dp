@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import DPLogo from './DPLogo'
+import { useLang } from './LangContext'
 
 const lerp  = (a, b, t) => a + (b - a) * t
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v))
@@ -16,6 +17,13 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const pathname = usePathname()
+  const { lang, setLang, tr } = useLang()
+
+  const NAV_LINKS = [
+    { label: tr.nav.work,   href: '/'           },
+    { label: tr.nav.about,  href: '/about'      },
+    { label: tr.nav.resume, href: '/resume.pdf', target: '_blank' },
+  ]
 
   const navRef        = useRef(null)
   const bgRef         = useRef(null)
@@ -114,7 +122,7 @@ export default function Navbar() {
         <DPLogo size={48} />
       </div>
 
-      {/* Links */}
+      {/* Links + Lang switcher */}
       <div
         ref={linksWrapRef}
         style={{ display: 'flex', alignItems: 'center', gap: '45px' }}
@@ -141,6 +149,7 @@ export default function Navbar() {
             </a>
           )
         })}
+
       </div>
     </nav>
   )

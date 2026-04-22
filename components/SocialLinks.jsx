@@ -22,9 +22,9 @@ const MailIcon = () => (
 );
 
 const LINKS = [
-  { label: "GitHub",   href: "https://github.com",                Icon: GitHubIcon   },
-  { label: "LinkedIn", href: "https://linkedin.com",              Icon: LinkedInIcon },
-  { label: "Mail",     href: "mailto:contact@dominikpazurek.com", Icon: MailIcon     },
+  { label: "GitHub",   href: "https://github.com/qomel",                         Icon: GitHubIcon   },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/dominik-pazurek-7089282a5/", Icon: LinkedInIcon },
+  { label: "Mail",     href: "mailto:dominik.pazurek@gmail.com",                 Icon: MailIcon     },
 ];
 
 export default function SocialLinks() {
@@ -43,7 +43,7 @@ export default function SocialLinks() {
         display:       "flex",
         flexDirection: "column",
         gap:           "16px",
-        color:         "rgba(255,255,255,0.7)",
+        color:         "#fff",
         animationDelay: "1s",
       }}
     >

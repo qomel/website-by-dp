@@ -1,13 +1,17 @@
+'use client'
+
 import Navbar from "@/components/Navbar";
 import LogoParallax from "@/components/LogoParallax";
 import WorkSection from "@/components/WorkSection";
 import SectionDivider from "@/components/Divider";
 import ExperienceSection from "@/components/ExperienceSection";
 import Footer from "@/components/Footer";
+import { useLang } from "@/components/LangContext";
 
 /* ─── Page ────────────────────────────────────────────────── */
 
 export default function WorkPage() {
+  const { tr } = useLang()
   return (
     <div style={{ position: "relative" }}>
     <div

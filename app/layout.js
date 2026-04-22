@@ -3,6 +3,8 @@ import { Dela_Gothic_One, Roboto } from "next/font/google";
 import "./globals.css";
 import HoverStyles from "@/components/HoverStyles";
 import SocialLinks from "@/components/SocialLinks";
+import { LangProvider } from "@/components/LangContext";
+import LangSwitcher from "@/components/LangSwitcher";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -62,6 +64,12 @@ export default function RootLayout({ children }) {
       className={`${didot.variable} ${delaGothicOne.variable} ${roboto.variable} h-full`}
     >
       <body className="min-h-full">
+        <LangProvider>
+          <HoverStyles />
+          <SocialLinks />
+          <LangSwitcher />
+          {children}
+        </LangProvider>
         <HoverStyles />
         <SocialLinks />
         {children}

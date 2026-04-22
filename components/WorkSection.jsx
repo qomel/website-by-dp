@@ -5,19 +5,34 @@ import { useEffect, useRef } from "react";
 import mockupPromed from "@/assets/mockup-promed.png";
 import mockupTown from "@/assets/mockup-town.jpg";
 import mockupEnergy from "@/assets/mockup-energy.jpg";
+import { useLang } from "./LangContext";
 
 /* ── Reveal hook ───────────────────────────────────────────── */
-function useReveal() {
+// Odpala gdy 55% wysokości elementu LUB 400px (co mniejsze) jest widoczne.
+// Małe elementy (labele ~50px) → odpalają przy ~28px widocznych.
+// Duże elementy (mockupy ~800px) → odpalają przy ~400px widocznych.
+function useReveal(triggerDelay = 0) {
   const ref = useRef(null)
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const io = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { el.classList.add('work-visible'); io.disconnect() } },
-      { threshold: 0.15, rootMargin: "0px 0px -18% 0px" }
-    )
-    io.observe(el)
-    return () => io.disconnect()
+
+    const check = () => {
+      const rect          = el.getBoundingClientRect()
+      const visibleTop    = Math.max(rect.top, 0)
+      const visibleBottom = Math.min(rect.bottom, window.innerHeight)
+      const visiblePx     = Math.max(visibleBottom - visibleTop, 0)
+      const threshold     = Math.min(rect.height * 0.55, 400)
+
+      if (visiblePx >= threshold) {
+        window.removeEventListener('scroll', check)
+        setTimeout(() => el.classList.add('work-visible'), triggerDelay)
+      }
+    }
+
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    return () => window.removeEventListener('scroll', check)
   }, [])
   return ref
 }
@@ -69,7 +84,7 @@ function Category({ children }) {
 }
 
 function LabelRow({ num, name, category, style, delay = 0 }) {
-  const ref = useReveal()
+  const ref = useReveal(180)
   return (
     <div
       ref={ref}
@@ -98,12 +113,23 @@ function MockupCard({ src, alt, sizes, style, delay = 0, from = 'left' }) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    const io = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { el.classList.add('work-visible'); io.disconnect() } },
-      { threshold: 0.15, rootMargin: "0px 0px -18% 0px" }
-    )
-    io.observe(el)
-    return () => io.disconnect()
+
+    const check = () => {
+      const rect          = el.getBoundingClientRect()
+      const visibleTop    = Math.max(rect.top, 0)
+      const visibleBottom = Math.min(rect.bottom, window.innerHeight)
+      const visiblePx     = Math.max(visibleBottom - visibleTop, 0)
+      const threshold     = Math.min(rect.height * 0.55, 400)
+
+      if (visiblePx >= threshold) {
+        el.classList.add('work-visible')
+        window.removeEventListener('scroll', check)
+      }
+    }
+
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    return () => window.removeEventListener('scroll', check)
   }, [])
 
   return (
@@ -130,6 +156,7 @@ function MockupCard({ src, alt, sizes, style, delay = 0, from = 'left' }) {
 
 /* ── Section ───────────────────────────────────────────────── */
 export default function WorkSection() {
+  const { tr } = useLang()
   return (
     <>
       <style>{`
@@ -164,7 +191,7 @@ export default function WorkSection() {
             top:         0,
             writingMode: "vertical-rl",
             fontFamily:  "var(--font-dela-gothic), 'Dela Gothic One', cursive",
-            fontSize:    "clamp(11px, 1.4vw, 26px)",
+            fontSize:    "clamp(16px, 2vw, 38px)",
             fontWeight:  400,
             color:       "rgba(255,255,255,0.1)",
             letterSpacing: "0.05em",
@@ -178,15 +205,15 @@ export default function WorkSection() {
 
           {/* ── 01 PRO-MED ── */}
           <MockupCard src={mockupPromed} alt="PRO-MED project"    sizes="72vw" from="left"  style={{ left: "2.64%",  top: "3.93%",  width: "72.08%" }} />
-          <LabelRow   num="01/" name="PRO-MED"    category="CLIENT"    delay={120} style={{ left: "38.68%", top: "4.20%",  width: "38.09%" }} />
+          <LabelRow   num="01/" name="PRO-MED"    category={tr.work.client}    delay={120} style={{ left: "38.68%", top: "4.20%",  width: "38.09%" }} />
 
           {/* ── 02 PIXEL TOWN ── */}
           <MockupCard src={mockupTown}   alt="PIXEL TOWN project" sizes="48vw" from="right" style={{ left: "41.32%", top: "37.57%", width: "47.88%" }} />
-          <LabelRow   num="02/" name="PIXEL TOWN" category="PORTFOLIO" delay={120} style={{ left: "42.64%", top: "37.57%", width: "52.11%" }} />
+          <LabelRow   num="02/" name="PIXEL TOWN" category={tr.work.portfolio} delay={120} style={{ left: "42.64%", top: "37.57%", width: "52.11%" }} />
 
           {/* ── 03 ENERGY ── */}
           <MockupCard src={mockupEnergy} alt="ENERGY project"     sizes="54vw" from="left"  style={{ left: "10.63%", top: "67.71%", width: "53.47%" }} />
-          <LabelRow   num="03/" name="ENERGY"     category="PORTFOLIO" delay={120} style={{ left: "7.13%",  top: "64.80%", width: "40.53%" }} />
+          <LabelRow   num="03/" name="ENERGY"     category={tr.work.portfolio} delay={120} style={{ left: "7.13%",  top: "64.80%", width: "40.53%" }} />
 
         </div>
       </section>

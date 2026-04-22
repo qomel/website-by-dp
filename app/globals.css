@@ -113,14 +113,13 @@ body {
 .social-icon-link {
   display: block;
   flex-shrink: 0;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease,
-    opacity 0.25s ease;
+  color: #fff;
+  opacity: 0.5;
+  transition: opacity 0.25s ease;
 }
 
 .social-icon-link:hover {
-  transform: translateY(-5px);
-  filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.55));
-  opacity: 1 !important;
+  opacity: 1;
 }
 
 /* ─── Blurred logo decoration ─────────────────────────────── */

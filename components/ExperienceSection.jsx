@@ -1,37 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useLang } from './LangContext'
 
-/* ─── Data ────────────────────────────────────────────────── */
-const ENTRIES = [
-  {
-    id: 'kostar',
-    company: 'KOSTAR',
-    date: '/06. 2025 - Obecnie',
-    tags: ['Helpdesk', 'Server', 'SQL', 'mMEDICA', 'Network'],
-    description:
-      'Responsible for hardware assembly, diagnostics and repair, alongside deployment and maintenance of SQL, SMTP and web servers.',
-    defaultOpen: true,
-  },
-  {
-    id: 'giganci',
-    company: 'GIGANCI PROGRAMOWANIA',
-    date: '/09. 2024 - 06. 2025',
-    tags: ['Ipsum'],
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.',
-    defaultOpen: false,
-  },
-  {
-    id: 'promed',
-    company: 'PRO-MED',
-    date: '/03. 2023 - 09. 2024',
-    tags: ['Ipsum'],
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.',
-    defaultOpen: false,
-  },
-]
+/* ─── Reveal hook ────────────────────────────────────────── */
+function useReveal(delay = 0) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const check = () => {
+      const rect = el.getBoundingClientRect()
+      if (rect.top < window.innerHeight * 0.68) {
+        setTimeout(() => el.classList.add('exp-visible'), delay)
+        window.removeEventListener('scroll', check)
+      }
+    }
+    check()
+    window.addEventListener('scroll', check, { passive: true })
+    return () => window.removeEventListener('scroll', check)
+  }, [])
+  return ref
+}
 
 /* ─── Tag pill ────────────────────────────────────────────── */
 function Tag({ label }) {
@@ -66,17 +56,15 @@ function ToggleIcon({ open }) {
   )
 }
 
-/* ─── Divider ─────────────────────────────────────────────── */
-function Divider() {
-  return <div style={{ width: '100%', height: '1px', background: '#fff' }} />
-}
-
 /* ─── Single entry ────────────────────────────────────────── */
-function Entry({ entry, open, onToggle }) {
+function Entry({ entry, open, onToggle, index = 0 }) {
+  const ref = useReveal(index * 100)
 
   return (
-    <div>
-      <Divider />
+    <div
+      ref={ref}
+      className="exp-entry"
+    >
       <div
         onClick={() => { if (!open) onToggle() }}
         style={{
@@ -164,9 +152,50 @@ function Entry({ entry, open, onToggle }) {
 
 /* ─── Section ─────────────────────────────────────────────── */
 export default function ExperienceSection() {
+  const { tr } = useLang()
+
+  const ENTRIES = [
+    {
+      id: 'kostar',
+      company: 'KOSTAR',
+      date: `/06. 2025 - ${tr.experience.currently}`,
+      tags: ['Helpdesk', 'Server', 'SQL', 'mMEDICA', 'Network'],
+      description: tr.experience.kostar.description,
+      defaultOpen: true,
+    },
+    {
+      id: 'giganci',
+      company: 'GIGANCI PROGRAMOWANIA',
+      date: '/09. 2024 - 06. 2025',
+      tags: ['Python', 'Nauczanie'],
+      description: tr.experience.giganci.description,
+      defaultOpen: false,
+    },
+    {
+      id: 'promed',
+      company: 'PRO-MED',
+      date: '/03. 2023 - 09. 2024',
+      tags: ['Windows', 'Hardware', 'Helpdesk'],
+      description: tr.experience.promed.description,
+      defaultOpen: false,
+    },
+  ]
+
   const [openId, setOpenId] = useState(ENTRIES[0].id)
 
   return (
+    <>
+    <style>{`
+      .exp-entry {
+        opacity: 0;
+        transform: translateY(36px);
+        transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+      }
+      .exp-entry.exp-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    `}</style>
     <section style={{
       background: '#141414',
       width: '100%',
@@ -190,7 +219,7 @@ export default function ExperienceSection() {
           top: 0,
           writingMode: 'vertical-rl',
           fontFamily: "var(--font-dela-gothic), 'Dela Gothic One', cursive",
-          fontSize: 'clamp(11px, 1.4vw, 26px)',
+          fontSize: 'clamp(16px, 2vw, 38px)',
           fontWeight: 400,
           color: 'rgba(255,255,255,0.1)',
           letterSpacing: '0.05em',
@@ -214,18 +243,19 @@ export default function ExperienceSection() {
           margin: '0 auto',
           paddingTop: 'clamp(40px, 16.06vw, 243px)',
         }}>
-          {ENTRIES.map(entry => (
+          {ENTRIES.map((entry, i) => (
             <Entry
               key={entry.id}
               entry={entry}
+              index={i}
               open={openId === entry.id}
               onToggle={() => setOpenId(id => id === entry.id ? null : entry.id)}
             />
           ))}
-          <Divider />
         </div>
 
       </div>
     </section>
+    </>
   )
 }
