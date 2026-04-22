@@ -70,9 +70,6 @@ export default function RootLayout({ children }) {
           <LangSwitcher />
           {children}
         </LangProvider>
-        <HoverStyles />
-        <SocialLinks />
-        {children}
         <SpeedInsights />
         <Analytics />
       </body>
