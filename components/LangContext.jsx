@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { t } from '@/lib/translations'
 
-const LangContext = createContext(null)
+const LangContext = createContext({ lang: 'en', setLang: () => {}, tr: t['en'] })
 
 export function LangProvider({ children }) {
   const [lang, setLang] = useState('en')
