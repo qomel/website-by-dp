@@ -11,7 +11,7 @@ function useReveal(delay = 0) {
     if (!el) return
     const check = () => {
       const rect = el.getBoundingClientRect()
-      if (rect.top < window.innerHeight * 0.68) {
+      if (rect.top < window.innerHeight * 0.88) {
         setTimeout(() => el.classList.add('exp-visible'), delay)
         window.removeEventListener('scroll', check)
       }
@@ -241,7 +241,7 @@ export default function ExperienceSection() {
         <div style={{
           width: '72.8%',       /* 1103/1515 ≈ 72.8% — środek layoutu */
           margin: '0 auto',
-          paddingTop: 'clamp(40px, 16.06vw, 243px)',
+          paddingTop: 'clamp(24px, 7vw, 106px)',
         }}>
           {ENTRIES.map((entry, i) => (
             <Entry
