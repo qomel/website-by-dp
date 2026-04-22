@@ -9,12 +9,6 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 
-const NAV_LINKS = [
-  { label: "Work", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Resume", href: "/CV-Dominik-Pazurek.pdf", newTab: true },
-];
-
 export default function Navbar() {
   const pathname = usePathname();
   const { lang, setLang, tr } = useLang();
@@ -22,7 +16,7 @@ export default function Navbar() {
   const NAV_LINKS = [
     { label: tr.nav.work, href: "/" },
     { label: tr.nav.about, href: "/about" },
-    { label: tr.nav.resume, href: "/CV-Dominik-Pazurek.pdf", target: "_blank" },
+    { label: tr.nav.resume, href: "/CV-Dominik-Pazurek.pdf", newTab: true },
   ];
 
   const navRef = useRef(null);
