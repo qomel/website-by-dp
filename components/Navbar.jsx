@@ -22,7 +22,7 @@ export default function Navbar() {
   const NAV_LINKS = [
     { label: tr.nav.work,   href: '/'           },
     { label: tr.nav.about,  href: '/about'      },
-    { label: tr.nav.resume, href: '/resume.pdf', target: '_blank' },
+    { label: tr.nav.resume, href: '/CV-Dominik-Pazurek.pdf', target: '_blank' },
   ]
 
   const navRef        = useRef(null)

@@ -88,7 +88,7 @@ export default function Footer() {
           {['Work', 'About', 'Resume'].map(label => (
             <a
               key={label}
-              href={label === 'Resume' ? '/resume.pdf' : label === 'Work' ? '/' : `/${label.toLowerCase()}`}
+              href={label === 'Resume' ? '/CV-Dominik-Pazurek.pdf' : label === 'Work' ? '/' : `/${label.toLowerCase()}`}
               target={label === 'Resume' ? '_blank' : undefined}
               rel={label === 'Resume' ? 'noopener noreferrer' : undefined}
               style={{
