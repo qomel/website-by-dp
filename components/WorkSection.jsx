@@ -155,25 +155,26 @@ export default function WorkSection() {
       `}</style>
 
       <section style={{ background: "#141414", width: "100%", position: "relative", overflow: "clip" }}>
-        <div style={{ position: "relative", width: "100%", maxWidth: "1515px", margin: "0 auto", aspectRatio: "1515 / 2188" }}>
 
-          {/* ── Sticky WORK label ── */}
-          <div style={{ position: "sticky", top: "8vh", height: 0, overflow: "visible", zIndex: 10, pointerEvents: "none", userSelect: "none" }}>
-            <div style={{
-              position:    "absolute",
-              right:       0,
-              top:         0,
-              writingMode: "vertical-rl",
-              fontFamily:  "var(--font-dela-gothic), 'Dela Gothic One', cursive",
-              fontSize:    "clamp(18px, 2.2vw, 34px)",
-              fontWeight:  400,
-              color:       "rgba(255,255,255,0.1)",
-              letterSpacing: "0.05em",
-              lineHeight:  1,
-            }}>
-              WORK
-            </div>
+        {/* ── Sticky WORK label — poza kontenerem, przy prawej krawędzi ekranu ── */}
+        <div style={{ position: "sticky", top: "8vh", height: 0, overflow: "visible", zIndex: 10, pointerEvents: "none", userSelect: "none" }}>
+          <div style={{
+            position:    "absolute",
+            right:       "clamp(6px, 1.2vw, 20px)",
+            top:         0,
+            writingMode: "vertical-rl",
+            fontFamily:  "var(--font-dela-gothic), 'Dela Gothic One', cursive",
+            fontSize:    "clamp(11px, 1.4vw, 26px)",
+            fontWeight:  400,
+            color:       "rgba(255,255,255,0.1)",
+            letterSpacing: "0.05em",
+            lineHeight:  1,
+          }}>
+            WORK
           </div>
+        </div>
+
+        <div style={{ position: "relative", width: "100%", maxWidth: "1515px", margin: "0 auto", aspectRatio: "1515 / 2188" }}>
 
           {/* ── 01 PRO-MED ── */}
           <MockupCard src={mockupPromed} alt="PRO-MED project"    sizes="72vw" from="left"  style={{ left: "2.64%",  top: "3.93%",  width: "72.08%" }} />

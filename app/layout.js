@@ -48,6 +48,9 @@ const delaGothicOne = Dela_Gothic_One({
 export const metadata = {
   title: "Dominik Pazurek",
   description: "Web designer & developer",
+  verification: {
+    google: "Hq_LjK4_z_IxCMZQ-fnNqxPxc2PxrSMazSHOZL1-myQ",
+  },
 };
 
 export default function RootLayout({ children }) {

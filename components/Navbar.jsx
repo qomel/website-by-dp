@@ -27,10 +27,10 @@ export default function Navbar() {
     let rafId
 
     const loop = () => {
-      const p = ease(clamp(window.scrollY / 80, 0, 1))
+      const p = ease(clamp(window.scrollY / 200, 0, 1))
 
-      // Background reveals top→bottom AFTER text settles (starts at scrollY 65px)
-      const bgP = ease(clamp((window.scrollY - 65) / 40, 0, 1))
+      // Background reveals top→bottom AFTER text settles (starts at scrollY 150px)
+      const bgP = ease(clamp((window.scrollY - 150) / 70, 0, 1))
 
       const nav = navRef.current
       if (nav) {
