@@ -14,7 +14,7 @@ function useReveal() {
     if (!el) return
     const io = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { el.classList.add('work-visible'); io.disconnect() } },
-      { threshold: 0.12 }
+      { threshold: 0.15, rootMargin: "0px 0px -18% 0px" }
     )
     io.observe(el)
     return () => io.disconnect()
@@ -100,7 +100,7 @@ function MockupCard({ src, alt, sizes, style, delay = 0, from = 'left' }) {
     if (!el) return
     const io = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { el.classList.add('work-visible'); io.disconnect() } },
-      { threshold: 0.1 }
+      { threshold: 0.15, rootMargin: "0px 0px -18% 0px" }
     )
     io.observe(el)
     return () => io.disconnect()
