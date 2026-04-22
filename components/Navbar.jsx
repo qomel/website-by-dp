@@ -9,6 +9,12 @@ const lerp  = (a, b, t) => a + (b - a) * t
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v))
 const ease  = (t) => t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2
 
+const NAV_LINKS = [
+  { label: 'Work',   href: '/'      },
+  { label: 'About',  href: '/about' },
+  { label: 'Resume', href: '/CV-Dominik-Pazurek.pdf', newTab: true },
+]
+
 export default function Navbar() {
   const pathname = usePathname()
   const { lang, setLang, tr } = useLang()
@@ -121,15 +127,15 @@ export default function Navbar() {
         ref={linksWrapRef}
         style={{ display: 'flex', alignItems: 'center', gap: '45px' }}
       >
-        {NAV_LINKS.map(({ label, href, target }, i) => {
-          const active = href === '/' ? pathname === '/' : pathname.startsWith(href)
+        {NAV_LINKS.map(({ label, href, newTab }, i) => {
+          const active = !newTab && (href === '/' ? pathname === '/' : pathname.startsWith(href))
           return (
             <a
               key={label}
               ref={el => { linkRefs.current[i] = el }}
               href={href}
-              target={target}
-              rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+              target={newTab ? '_blank' : undefined}
+              rel={newTab ? 'noopener noreferrer' : undefined}
               className={`anim-fade-in-down no-underline nav-link${active ? ' nav-link-active' : ''}`}
               style={{
                 fontFamily:     'var(--font-didot), Didot, serif',
