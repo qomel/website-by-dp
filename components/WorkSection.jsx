@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import mockupPromed from "@/assets/mockup-promed.png";
-import mockupTown from "@/assets/mockup-town.jpg";
 import mockupEnergy from "@/assets/mockup-energy.jpg";
 import { useLang } from "./LangContext";
 
@@ -108,48 +107,68 @@ function LabelRow({ num, name, category, style, delay = 0 }) {
   )
 }
 
-function MockupCard({ src, alt, sizes, style, delay = 0, from = 'left' }) {
+function useMockupReveal() {
   const ref = useRef(null)
   useEffect(() => {
     const el = ref.current
     if (!el) return
-
     const check = () => {
       const rect          = el.getBoundingClientRect()
       const visibleTop    = Math.max(rect.top, 0)
       const visibleBottom = Math.min(rect.bottom, window.innerHeight)
       const visiblePx     = Math.max(visibleBottom - visibleTop, 0)
       const threshold     = Math.min(rect.height * 0.55, 400)
-
       if (visiblePx >= threshold) {
         el.classList.add('work-visible')
         window.removeEventListener('scroll', check)
       }
     }
-
     check()
     window.addEventListener('scroll', check, { passive: true })
     return () => window.removeEventListener('scroll', check)
   }, [])
+  return ref
+}
 
+function MockupCard({ src, alt, sizes, style, delay = 0, from = 'left', href }) {
+  const ref = useMockupReveal()
+  const image = (
+    <Image
+      src={src}
+      alt={alt}
+      width={4000}
+      height={3000}
+      sizes={sizes}
+      style={{ width: "100%", height: "auto", borderRadius: "10px", display: "block" }}
+    />
+  )
   return (
     <div
       ref={ref}
       className={`work-reveal-x work-reveal-x--${from}`}
-      style={{
-        position: "absolute",
-        transitionDelay: `${delay}ms`,
-        ...style,
-      }}
+      style={{ position: "absolute", transitionDelay: `${delay}ms`, ...style }}
     >
-      <Image
-        src={src}
-        alt={alt}
-        width={4000}
-        height={3000}
-        sizes={sizes}
-        style={{ width: "100%", height: "auto", borderRadius: "10px", display: "block" }}
-      />
+      {href
+        ? <a href={href} target="_blank" rel="noopener noreferrer" style={{ display: "block" }}>{image}</a>
+        : image}
+    </div>
+  )
+}
+
+function MockupPlaceholder({ style, delay = 0, from = 'right', href }) {
+  const ref = useMockupReveal()
+  const inner = (
+    <div style={{ width: "100%", aspectRatio: "4/3", background: "#1e1e1e", borderRadius: "10px" }} />
+  )
+  return (
+    <div
+      ref={ref}
+      className={`work-reveal-x work-reveal-x--${from}`}
+      style={{ position: "absolute", transitionDelay: `${delay}ms`, ...style }}
+    >
+      {href
+        ? <a href={href} target="_blank" rel="noopener noreferrer" style={{ display: "block" }}>{inner}</a>
+        : inner}
     </div>
   )
 }
@@ -204,16 +223,16 @@ export default function WorkSection() {
         <div style={{ position: "relative", width: "100%", maxWidth: "1515px", margin: "0 auto", aspectRatio: "1515 / 2188" }}>
 
           {/* ── 01 PRO-MED ── */}
-          <MockupCard src={mockupPromed} alt="PRO-MED project"    sizes="72vw" from="left"  style={{ left: "2.64%",  top: "3.93%",  width: "72.08%" }} />
-          <LabelRow   num="01/" name="PRO-MED"    category={tr.work.client}    delay={120} style={{ left: "38.68%", top: "4.20%",  width: "38.09%" }} />
+          <MockupCard src={mockupPromed} alt="PRO-MED project"   sizes="72vw" from="left"  href="https://www.promed-raciborz.pl/"    style={{ left: "2.64%",  top: "3.93%",  width: "72.08%" }} />
+          <LabelRow   num="01/" name="PRO-MED"   category={tr.work.client}    delay={120} style={{ left: "38.68%", top: "4.20%",  width: "38.09%" }} />
 
-          {/* ── 02 PIXEL TOWN ── */}
-          <MockupCard src={mockupTown}   alt="PIXEL TOWN project" sizes="48vw" from="right" style={{ left: "41.32%", top: "37.57%", width: "47.88%" }} />
-          <LabelRow   num="02/" name="PIXEL TOWN" category={tr.work.portfolio} delay={120} style={{ left: "42.64%", top: "37.57%", width: "52.11%" }} />
+          {/* ── 02 VIPPRINT ── */}
+          <MockupPlaceholder                                       from="right" href="https://vipprint-pl.vercel.app/"              style={{ left: "41.32%", top: "37.57%", width: "47.88%" }} />
+          <LabelRow   num="02/" name="VIPPRINT"  category={tr.work.portfolio} delay={120} style={{ left: "42.64%", top: "37.57%", width: "52.11%" }} />
 
           {/* ── 03 ENERGY ── */}
-          <MockupCard src={mockupEnergy} alt="ENERGY project"     sizes="54vw" from="left"  style={{ left: "10.63%", top: "67.71%", width: "53.47%" }} />
-          <LabelRow   num="03/" name="ENERGY"     category={tr.work.portfolio} delay={120} style={{ left: "7.13%",  top: "64.80%", width: "40.53%" }} />
+          <MockupCard src={mockupEnergy} alt="ENERGY project"    sizes="54vw" from="left"  href="https://github.com/qomel/RedBull-SP" style={{ left: "10.63%", top: "67.71%", width: "53.47%" }} />
+          <LabelRow   num="03/" name="ENERGY"    category={tr.work.portfolio} delay={120} style={{ left: "7.13%",  top: "64.80%", width: "40.53%" }} />
 
         </div>
       </section>
