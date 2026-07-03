@@ -52,7 +52,7 @@ const delaGothicOne = Dela_Gothic_One({
 export const metadata = {
   metadataBase: new URL("https://www.by-dp.com"),
   title: "Dominik Pazurek",
-  description: "Web designer & developer",
+  description: "Dominik Pazurek — frontend developer & web designer. Next.js, Figma, projektowanie i wdrażanie stron internetowych.",
   keywords: [
     "Dominik Pazurek",
     "Frontend Developer",
@@ -68,7 +68,7 @@ export const metadata = {
   publisher: "Dominik Pazurek",
   openGraph: {
     title: "Dominik Pazurek",
-    description: "Web designer & developer",
+    description: "Dominik Pazurek — frontend developer & web designer. Next.js, Figma, projektowanie i wdrażanie stron internetowych.",
     url: "https://www.by-dp.com",
     siteName: "Dominik Pazurek",
     locale: "en_US",
@@ -77,7 +77,7 @@ export const metadata = {
   twitter: {
     card: "summary",
     title: "Dominik Pazurek",
-    description: "Web designer & developer",
+    description: "Dominik Pazurek — frontend developer & web designer. Next.js, Figma, projektowanie i wdrażanie stron internetowych.",
   },
   verification: {
     google: "Hq_LjK4_z_IxCMZQ-fnNqxPxc2PxrSMazSHOZL1-myQ",
