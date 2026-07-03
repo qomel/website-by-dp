@@ -50,8 +50,35 @@ const delaGothicOne = Dela_Gothic_One({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://by-dp.com"),
   title: "Dominik Pazurek",
   description: "Web designer & developer",
+  keywords: [
+    "Dominik Pazurek",
+    "Frontend Developer",
+    "Web Developer",
+    "Web Design",
+    "Figma",
+    "Next.js",
+    "Python",
+    "CV",
+  ],
+  authors: [{ name: "Dominik Pazurek", url: "https://by-dp.com" }],
+  creator: "Dominik Pazurek",
+  publisher: "Dominik Pazurek",
+  openGraph: {
+    title: "Dominik Pazurek",
+    description: "Web designer & developer",
+    url: "https://by-dp.com",
+    siteName: "Dominik Pazurek",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Dominik Pazurek",
+    description: "Web designer & developer",
+  },
   verification: {
     google: "Hq_LjK4_z_IxCMZQ-fnNqxPxc2PxrSMazSHOZL1-myQ",
   },
