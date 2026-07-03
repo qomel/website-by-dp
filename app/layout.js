@@ -50,7 +50,7 @@ const delaGothicOne = Dela_Gothic_One({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://by-dp.com"),
+  metadataBase: new URL("https://www.by-dp.com"),
   title: "Dominik Pazurek",
   description: "Web designer & developer",
   keywords: [
@@ -63,13 +63,13 @@ export const metadata = {
     "Python",
     "CV",
   ],
-  authors: [{ name: "Dominik Pazurek", url: "https://by-dp.com" }],
+  authors: [{ name: "Dominik Pazurek", url: "https://www.by-dp.com" }],
   creator: "Dominik Pazurek",
   publisher: "Dominik Pazurek",
   openGraph: {
     title: "Dominik Pazurek",
     description: "Web designer & developer",
-    url: "https://by-dp.com",
+    url: "https://www.by-dp.com",
     siteName: "Dominik Pazurek",
     locale: "en_US",
     type: "website",
