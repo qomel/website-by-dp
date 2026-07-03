@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import mockupPromed from "@/assets/mockup-promed.png";
+import mockupPromed from "@/assets/mockup-promed.jpg";
 import mockupEnergy from "@/assets/mockup-energy.jpg";
 import { useLang } from "./LangContext";
 

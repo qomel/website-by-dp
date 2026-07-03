@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import mockupPromed from "@/assets/mockup-promed.png";
+import mockupPromed from "@/assets/mockup-promed.jpg";
 import AboutPhotos from "@/components/AboutPhotos";
 import { useLang } from "@/components/LangContext";
 
