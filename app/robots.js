@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://by-dp.com/sitemap.xml",
+    sitemap: "https://www.by-dp.com/sitemap.xml",
   };
 }
